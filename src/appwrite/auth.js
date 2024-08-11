@@ -38,12 +38,12 @@ export class AuthService{
     }
     async getCurrentUser(){
         try{
-            await this.account.get();
+            return await this.account.get();
         }
         catch(error){
-            throw error;
+            console.error("error :: get user :: ",error);
         }
-        throw null;
+        return null;
     }
     async logout(){
         try {
