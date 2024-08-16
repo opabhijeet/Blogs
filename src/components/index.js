@@ -7,9 +7,10 @@ import Button from "./Button";
 import Input from "./Input";
 import Select from "./Select";
 import Login from "./Login";
-import Register from "./Register";
+import Signup from "./Signup";
 import PostCard from "./PostCard";
+import AuthLayout from "./AuthLayout";
 
 export { Header, Footer, Container, Logo , LogoutBtn, Button,
-    Input, Select, Login, Register, PostCard
+    Input, Select, Login, Register, PostCard, AuthLayout, Signup
  };
