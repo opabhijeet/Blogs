@@ -3,17 +3,17 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 
-function AuthLayout({ children, authenticated }) {
+function AuthLayout({ children, authentication }) {
 
     const navigate = useNavigate();
     const [loader, setLoader] = useState(true);
     const authStatus = useSelector((state)=>state.auth.status);
 
     useEffect(()=>{
-        if(authenticated && authenticated !== authStatus){
+        if(authentication && authentication !== authStatus){
             navigate('/login');
         }
-        else if(!authenticated && authenticated !== authStatus){
+        else if(!authentication && authentication !== authStatus){
             navigate('/');
         }
         setLoader(false); 
