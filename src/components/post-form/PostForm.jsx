@@ -51,8 +51,8 @@ function PostForm({post}) {
         if(title && typeof title === "string"){
             return title
                 .trim()
-                .toLowerCase()
-                .replace(/^[a-zA-Z\d]/g, "-");
+                .replace(/\W+/g, "-")
+                .toLowerCase();
         }
         return "";
     },[]);
