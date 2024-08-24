@@ -10,7 +10,7 @@ function PostForm({post}) {
     const {register, handleSubmit, watch, setValue, control, getValues} = useForm({
         defaultValues:{
             title: post?.title || "",
-            slug: post?.slug || "",
+            slug: post?.$id || "",
             content: post?.content || "",
             status: post?.status || "active",
         }
@@ -19,7 +19,7 @@ function PostForm({post}) {
     const userData = useSelector(state=> state.auth.userData);
 
     const submit = async (data) => {
-        if(file){
+        if(post){
             const file = data.image[0] ? appwriteService.uploadFile(data.image[0]) : null;
             if(file){
                 appwriteService.deleteFile(post.featuredImage);
@@ -34,7 +34,7 @@ function PostForm({post}) {
             }
         }
         else{
-            const file = data.image[0] ? appwriteService.uploadFile(data.image[0]) : null;
+            const file = data.image[0] ? await appwriteService.uploadFile(data.image[0]) : null;
             if(file){
                 data.featuredImage = file.$id;
                 const dbPost = await appwriteService.createPost({
@@ -51,7 +51,7 @@ function PostForm({post}) {
         if(title && typeof title === "string"){
             return title
                 .trim()
-                .replace(/\W+/g, "-")
+                .replace(/\W+/g, "_")
                 .toLowerCase();
         }
         return "";

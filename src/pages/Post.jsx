@@ -7,7 +7,7 @@ import { useSelector } from "react-redux";
 
 export default function Post(){
     const [post, setPost] = useState(null);
-    const slug = useParams();
+    const {slug} = useParams();
     const navigate = useNavigate();
 
     const userData = useSelector((state) => state.auth.userData);
@@ -37,7 +37,7 @@ export default function Post(){
 
     return post ? (
         <div className="py-8">
-            <Container>'
+            <Container>
                 <div className="w-full flex justify-center mb-4 relative border rounded-xl p-2">
                     <img 
                         src={appwriteService.getFilePreview(post.featuredImage)} 

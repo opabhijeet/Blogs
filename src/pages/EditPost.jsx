@@ -2,11 +2,11 @@ import { useState } from "react"
 import appwriteService from "../appwrite/main"
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect } from "react";
-import { Container } from "../components";
+import { Container, PostForm } from "../components";
 
 export default function EditPost(){
-    const [post, setPost] = useState([]);
-    const slug = useParams();
+    const [post, setPost] = useState(null);
+    const {slug} = useParams();
     const navigate = useNavigate();
 
     useEffect(()=>{

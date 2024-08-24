@@ -1,17 +1,23 @@
 import { useEffect, useState } from "react";
 import appwriteService from  "../appwrite/main";
 import { Container, PostCard } from "../components";
+import { useSelector } from "react-redux";
 
 
 export default function Home() {
     const [posts, setPosts] = useState([]);
-    
+    const user = useSelector((state) => state.auth.userData);
     useEffect(() => {
-        appwriteService.getPosts()
-        .then((res) => {
-            if(res) setPosts(res.documents);
-        })
-    }, []);
+        if(user){
+            appwriteService.getPosts()
+            .then((res) => {
+                if(res) setPosts(res.documents);
+            })
+        }
+        else {
+            setPosts([]);
+        }
+    }, [user]);
 
     if(posts.length === 0){
         return (
